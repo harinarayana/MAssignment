@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">OAssignment</string>
+
+    <!--API Base URL-->
+    <string name="api_base_url">https://en.wikipedia.org/w/api.php?</string>
+    <string name="search_hint">Search Here</string>
+    <string name="no_network">Please check your internet connection!!!</string>
+    <string name="recycler_view">Recycler View</string>
+    <string name="list_view">List View</string>
+</resources>
