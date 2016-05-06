@@ -2,6 +2,7 @@ package hari.oassignment;
 
 import android.content.ContentValues;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -55,7 +56,14 @@ public class SearchActivity extends BaseActivity implements SearchResultCallback
                     fireRequest(values, SearchActivity.this);
                 } else {
                     // remove data from list
-                    mAdapter.clearData();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Clear data after 3000ms
+                            mAdapter.clearData();
+                        }
+                    }, 3000);
                 }
             }
         });

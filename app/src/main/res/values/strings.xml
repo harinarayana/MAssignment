@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OAssignment</string>
+    <string name="app_name">Image Search</string>
 
     <!--API Base URL-->
     <string name="api_base_url">https://en.wikipedia.org/w/api.php?</string>
@@ -7,4 +7,5 @@
     <string name="no_network">Please check your internet connection!!!</string>
     <string name="recycler_view">Recycler View</string>
     <string name="list_view">List View</string>
+    <string name="wiki_search">Image Search</string>
 </resources>

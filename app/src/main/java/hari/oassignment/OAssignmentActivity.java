@@ -2,6 +2,7 @@ package hari.oassignment;
 
 import android.content.ContentValues;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
+
 
 import hari.oassignment.models.SearchResult;
 import hari.oassignment.utils.Constants;
@@ -60,7 +62,14 @@ public class OAssignmentActivity extends BaseActivity implements SearchResultCal
                     fireRequest(values, OAssignmentActivity.this);
                 } else {
                     // remove data from list
-                    mAdapter.clearData();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Clear data after 3000ms
+                            mAdapter.clearData();
+                        }
+                    }, 3000);
                 }
             }
         });
