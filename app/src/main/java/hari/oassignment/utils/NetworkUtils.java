@@ -47,7 +47,7 @@ public class NetworkUtils {
         String result = null;
         HttpURLConnection http = null;
         InputStream in;
-
+        try{
         if (url.getProtocol().toLowerCase().equals("https")) {
             trustAllHosts();
             try {
@@ -56,19 +56,28 @@ public class NetworkUtils {
                 http = https;
                 in = https.getInputStream();
                 result = convertStreamToString(in);
+            } catch (java.net.SocketTimeoutException e) {
+                e.printStackTrace();
             } catch (IOException ioe) {
                 ioe.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } else {
             try {
                 http = (HttpURLConnection) url.openConnection();
             } catch (IOException ioe) {
                 ioe.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        Log.i("Result","***************************************");
-        Log.i("Result",result);
-        Log.i("Result","***************************************");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //Log.i("Result","***************************************");
+        //Log.i("Result",result);
+        //Log.i("Result","***************************************");
         return result;
     }
 
@@ -94,6 +103,8 @@ public class NetworkUtils {
 
                 result = BitmapFactory.decodeStream(bufferedInputStream);
 
+            } catch (java.net.SocketTimeoutException e) {
+                e.printStackTrace();
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             }
@@ -144,6 +155,9 @@ public class NetworkUtils {
         try {
             JSONObject result = new JSONObject(response);
             JSONObject queryObj = result.optJSONObject(Constants.QUERY);
+            if(queryObj == null) {
+                return searchResults;
+            }
             JSONObject pages = queryObj.optJSONObject(Constants.PAGES);
             Iterator<String> keys= pages.keys();
             while (keys.hasNext()) {
